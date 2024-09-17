@@ -89,7 +89,7 @@ public class RentACatImpl implements RentACat {
 			}
 		}
 		if (rentableCats.length() == 0) {
-			return "Cat list is empty."+ newline;
+			return "";
 		}
 
 		return rentableCats.toString().trim();
