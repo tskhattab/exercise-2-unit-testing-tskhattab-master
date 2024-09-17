@@ -20,8 +20,8 @@ public interface RentACat {
 				RentACat mock = Mockito.mock(RentACat.class);
 
 				Mockito.when(mock.returnCat(anyInt())).thenReturn(true);
-                Mockito.when(mock.rentCat(anyInt())).thenReturn(true);
-                Mockito.when(mock.renameCat(anyInt(), anyString())).thenReturn(true);
+				Mockito.when(mock.rentCat(anyInt())).thenReturn(true);
+				Mockito.when(mock.renameCat(anyInt(), anyString())).thenReturn(true);
                 Mockito.when(mock.listCats()).thenReturn("Cat list is empty.");
 				return mock;
 			default:
