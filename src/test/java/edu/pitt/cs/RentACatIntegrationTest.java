@@ -84,7 +84,7 @@ public class RentACatIntegrationTest {
 	@Test
 	public void testListCatsNumCats0() {
 		// Test listing cats when there are no cats
-		assertEquals("\n", r.listCats());
+		assertEquals("", r.listCats());
 	}
 
 	@Test
