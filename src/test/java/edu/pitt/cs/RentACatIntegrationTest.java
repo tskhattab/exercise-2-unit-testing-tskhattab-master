@@ -84,7 +84,7 @@ public class RentACatIntegrationTest {
 	@Test
 	public void testListCatsNumCats0() {
 		// Test listing cats when there are no cats
-		assertEquals("Cat list is empty." + newline, r.listCats());
+		assertEquals("" + newline, r.listCats());
 	}
 
 	@Test
@@ -95,7 +95,7 @@ public class RentACatIntegrationTest {
 		r.addCat(c3);
 
 		// Test listing cats when three cats are present
-		String expected = "ID 1. Jennyanydots\nID 2. Old Deuteronomy\nID 3. Mistoffelees";
+		String expected = "ID 1. Jennyanydots\nID 2. Old Deuteronomy\nID 3. Mistoffelees\n";
 		assertEquals(expected, r.listCats());
 	}
 
