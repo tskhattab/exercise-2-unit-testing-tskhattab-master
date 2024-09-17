@@ -44,23 +44,47 @@ public class RentACatUnitTest {
 		// Which type is the correct choice for this unit test?  I'll leave it up to you.  The answer is in the Unit Testing Part 2 lecture. :)
 		// TODO: Fill in
 
+
+		// Create a mock Cat instance
 		r = RentACat.createInstance(InstanceType.IMPL);
+
+		c1 = Mockito.mock(Cat.class);
+		when(c1.getId()).thenReturn(1);
+		when(c1.getName()).thenReturn("Jennyanydots");
+		when(c1.toString()).thenReturn("ID 1. Jennyanydots");
+		when(c1.getRented()).thenReturn(false);
+	
+		c2 = Mockito.mock(Cat.class);
+		when(c2.getId()).thenReturn(2);
+		when(c2.getName()).thenReturn("Old Deuteronomy");
+		when(c2.toString()).thenReturn("ID 2. Old Deuteronomy");
+		when(c2.getRented()).thenReturn(false);
+	
+		c3 = Mockito.mock(Cat.class);
+		when(c3.getId()).thenReturn(3);
+		when(c3.getName()).thenReturn("Mistoffelees");
+		when(c3.toString()).thenReturn("ID 3. Mistoffelees");
+		when(c3.getRented()).thenReturn(false);
+
+		// r.addCat(c1);
+		// r.addCat(c2);
+		// r.addCat(c3);
 
 		// 2. Create a Cat with ID 1 and name "Jennyanydots", assign to c1 using a call to Cat.createInstance(InstanceType, int, String).
 		// Passing InstanceType.IMPL as the first parameter will create a real cat using your CatImpl implementation.
 		// Passing InstanceType.MOCK as the first parameter will create a mock cat using Mockito.
 		// Which type is the correct choice for this unit test?  Again, I'll leave it up to you.
 		// TODO: Fill in
-		c1 = Cat.createInstance(InstanceType.IMPL, 1, "Jennyanydots");
+		//c1 = Cat.createInstance(InstanceType.IMPL, 1, "Jennyanydots");
 
 
 		// 3. Create a Cat with ID 2 and name "Old Deuteronomy", assign to c2 using a call to Cat.createInstance(InstanceType, int, String).
 		// TODO: Fill in
-		c2 = Cat.createInstance(InstanceType.IMPL, 2, "Old Deuteronomy");
+		//c2 = Cat.createInstance(InstanceType.IMPL, 2, "Old Deuteronomy");
 
 		// 4. Create a Cat with ID 3 and name "Mistoffelees", assign to c3 using a call to Cat.createInstance(InstanceType, int, String).
 		// TODO: Fill in
-		c3 = Cat.createInstance(InstanceType.IMPL, 3, "Mistoffeless");
+		//c3 = Cat.createInstance(InstanceType.IMPL, 3, "Mistoffeless");
 
 		// 5. Redirect system output from stdout to the "out" stream
 		// First, make a back up of System.out (which is the stdout to the console)
@@ -157,7 +181,7 @@ public class RentACatUnitTest {
 	@Test
 	public void testListCatsNumCats0() {
 		// TODO: Fill in
-		assertEquals("Cat list is empty.", r.listCats());
+		assertEquals("", r.listCats());
 	}
 
 	/**
@@ -177,7 +201,7 @@ public class RentACatUnitTest {
 		r.addCat(c2);
 		r.addCat(c3);
 
-		String expected = "ID 1. Jennyanydots\nID 2. Old Deuteronomy\nID 3. Mistoffeless";
+		String expected = "ID 1. Jennyanydots\nID 2. Old Deuteronomy\nID 3. Mistoffelees\n";
 		assertEquals(expected, r.listCats());
 	}
 
@@ -224,7 +248,9 @@ public class RentACatUnitTest {
 		r.addCat(c2);
 		r.addCat(c3);
 
+		when(c2.getName()).thenReturn("Garfield");
 		assertTrue(r.renameCat(2, "Garfield"));
+		verify(c2).renameCat("Garfield");
 		assertEquals("Garfield", c2.getName());
 	}
 
