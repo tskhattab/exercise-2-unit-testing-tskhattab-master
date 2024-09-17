@@ -19,10 +19,10 @@ public interface RentACat {
 				// TODO: Return a mock object that emulates the behavior of a real object.
 				RentACat mock = Mockito.mock(RentACat.class);
 
-				when(mock.returnCat(anyInt())).thenReturn(true);
-                when(mock.rentCat(anyInt())).thenReturn(true);
-                when(mock.renameCat(anyInt(), anyString())).thenReturn(true);
-                when(mock.listCats()).thenReturn("Cat list is empty.");
+				Mockito.when(mock.returnCat(anyInt())).thenReturn(true);
+                Mockito.when(mock.rentCat(anyInt())).thenReturn(true);
+                Mockito.when(mock.renameCat(anyInt(), anyString())).thenReturn(true);
+                Mockito.when(mock.listCats()).thenReturn("Cat list is empty.");
 				return mock;
 			default:
 				assert (false);

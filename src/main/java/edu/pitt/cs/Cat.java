@@ -16,10 +16,10 @@ public interface Cat {
 			    // TODO: Return a mock object that emulates the behavior of a real object.
 				Cat mock = Mockito.mock(Cat.class);
 
-				when(mock.getName()).thenReturn(name);
-				when(mock.getId()).thenReturn(id);
-				when(mock.getRented()).thenReturn(false);
-				when(mock.toString()).thenReturn("Cat ID " + id + ". " + name);				
+				Mockito.when(mock.getName()).thenReturn(name);
+				Mockito.when(mock.getId()).thenReturn(id);
+				Mockito.when(mock.getRented()).thenReturn(false);
+				Mockito.when(mock.toString()).thenReturn("Cat ID " + id + ". " + name);				
 				return mock;
 			default:
 				assert(false);
