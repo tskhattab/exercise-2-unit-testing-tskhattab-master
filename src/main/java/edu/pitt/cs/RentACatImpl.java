@@ -89,10 +89,10 @@ public class RentACatImpl implements RentACat {
 			}
 		}
 		if (rentableCats.length() == 0) {
-			return "";
+			return "\n";
 		}
 
-		return rentableCats.toString().trim();
+		return rentableCats.toString();
 	}
 
 	/**
