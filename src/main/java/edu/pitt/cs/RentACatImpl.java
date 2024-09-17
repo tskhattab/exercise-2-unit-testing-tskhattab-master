@@ -22,15 +22,10 @@ public class RentACatImpl implements RentACat {
 		Cat cat = getCat(id);
         if (cat != null && cat.getRented()) {
             cat.returnCat();
-            System.out.println("Welcome back, " + cat.getName() + "!");
+            //System.out.println("Welcome back, " + cat.getName() + "!");
             return true;
         }
 
-		if (cat != null) {
-			System.out.println(cat.getName() + " is already here!");
-		} else {
-			System.out.println("Invalid cat ID.");
-		}
 		return false;
 	}
 
@@ -49,15 +44,10 @@ public class RentACatImpl implements RentACat {
 		Cat cat = getCat(id);
         if (cat != null && !cat.getRented()) {
             cat.rentCat();
-            System.out.println(cat.getName() + " has been rented.");
+            //System.out.println(cat.getName() + " has been rented.");
             return true;
         }
 
-		if (cat != null) {
-			System.out.println("Sorry, " + cat.getName() + " is not here!");
-		} else {
-			System.out.println("Invalid cat ID.");
-		}
 		return false;
 	}
 
@@ -75,7 +65,7 @@ public class RentACatImpl implements RentACat {
 		Cat cat = getCat(id);
         if (cat != null) {
             cat.renameCat(name);
-            System.out.println("Cat ID " + id + " renamed to " + name);
+            //System.out.println("Cat ID " + id + " renamed to " + name);
             return true;
         }
 		//System.out.println("Invalid cat ID.");
@@ -101,7 +91,7 @@ public class RentACatImpl implements RentACat {
             }
         }
         if (rentableCats.length() == 0) {
-            return "Cat list is empty.";
+            return "";
         }
         return rentableCats.toString().trim();
 
@@ -134,7 +124,7 @@ public class RentACatImpl implements RentACat {
 		// If we get all the way through the list and did
 		// not find a cat whose ID matches the passed-in
 		// ID, then the cat is not in the list
-		System.out.println("Invalid cat ID.");
+		//System.out.println("Invalid cat ID.");
 		return null;
 
 	}
