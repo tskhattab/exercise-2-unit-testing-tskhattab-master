@@ -46,7 +46,7 @@ public class RentACatUnitTest {
 
 
 		// Create a mock Cat instance
-		r = RentACat.createInstance(InstanceType.IMPL);
+		r = RentACat.createInstance(InstanceType.MOCK);
 
 		c1 = Mockito.mock(Cat.class);
 		when(c1.getId()).thenReturn(1);
