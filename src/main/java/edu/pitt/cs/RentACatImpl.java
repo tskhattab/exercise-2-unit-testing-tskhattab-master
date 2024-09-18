@@ -5,127 +5,67 @@ import java.util.Scanner;
 
 public class RentACatImpl implements RentACat {
 
-	private ArrayList<Cat> cats = new ArrayList<Cat>();
-	String newline = System.lineSeparator();
+    private ArrayList<Cat> cats = new ArrayList<Cat>();
+    String newline = System.lineSeparator();
 
-	/**
-	 * Return a cat. This should call the .returnCat() method on the cat for the
-	 * passed-in cat id. If the cat with the id exists in the list of cats and has
-	 * been rented out, then this method should return true after calling
-	 * .returnCat() on that cat. Otherwise, the method should return false.
-	 * 
-	 * @param id the ID of the cat to rent
-	 * @return true if cat exists and was rented out, false otherwise
-	 */
-	public boolean returnCat(int id) {
-		Cat cat = getCat(id);
-		if (cat != null && cat.getRented()) {
-			cat.returnCat();
-			System.out.println("Welcome back, " + cat.getName() + "!");
-			return true;
-		} else {
-			System.out.println(cat != null ? (cat.getName() + " is already here!") : "Invalid cat ID.");
-			return false;
-		}
-	}
+    public boolean returnCat(int id) {
+        Cat cat = getCat(id);
+        if (cat != null && cat.getRented()) {
+            cat.returnCat();
+            System.out.println("Welcome back, " + cat.getName() + "!");
+            return true;
+        } else {
+            System.out.println(cat != null ? (cat.getName() + " is already here!") : "Invalid cat ID.");
+            return false;
+        }
+    }
 
-	/**
-	 * Rent a cat. This should call the .rentCat() method on the cat for the
-	 * passed-in cat id. If the cat with the id exists in the list of cats and has
-	 * *not* been rented out, then this method should return true after calling
-	 * .rentCat() on that cat. Otherwise, the method should return false.
-	 * 
-	 * @param id the ID of the cat to rent
-	 * @return true if cat exists and was not rented out, false otherwise
-	 */
-	public boolean rentCat(int id) {
-		Cat cat = getCat(id);
-		if (cat != null && !cat.getRented()) {
-			cat.rentCat();
-			System.out.println(cat.getName() + " has been rented.");
-			return true;
-		} else {
-			System.out.println(cat != null ? ("Sorry, " + cat.getName() + " is not here!") : "Invalid cat ID.");
-			return false;
-		}
-	}
+    public boolean rentCat(int id) {
+        Cat cat = getCat(id);
+        if (cat != null && !cat.getRented()) {
+            cat.rentCat();
+            System.out.println(cat.getName() + " has been rented.");
+            return true;
+        } else {
+            System.out.println(cat != null ? ("Sorry, " + cat.getName() + " is not here!") : "Invalid cat ID.");
+            return false;
+        }
+    }
 
-	/**
-	 * Rename a cat. This calls the .renameCat(String) method on the cat for the
-	 * passed-in cat id, if the cat exists, and then returns true. If the cat does
-	 * not exist, the method returns false.
-	 * 
-	 * @param id the ID of the cat to rename
-	 * @return true if cat exists, false otherwise
-	 */
-	public boolean renameCat(int id, String name) {
-		Cat cat = getCat(id);
-		if (cat != null) {
-			cat.renameCat(name);
-			System.out.println("Cat ID " + id + " renamed to " + name);
-			return true;
-		} else {
-			//System.out.println("Invalid cat ID.");
-			return false;
-		}
-	}
+    public boolean renameCat(int id, String name) {
+        Cat cat = getCat(id);
+        if (cat != null) {
+            cat.renameCat(name);
+            System.out.println("Cat ID " + id + " renamed to " + name);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-	/**
-	 * Create a String list from the list of cats using the .toString() method of
-	 * each NON-RENTED Cat object in the list. That is, it should only add cats who
-	 * are available to be rented. These cats should be separated by "\n" characters
-	 * (line feeds). Example: ID 1. Jennyanydots ID 2. Old Deuteronomy ID 3.
-	 * Mistoffelees
-	 * 
-	 * @return "\n"-delimited list of rentable cats
-	 */
-	public String listCats() {
-		StringBuilder rentableCats = new StringBuilder();
+    public String listCats() {
+        StringBuilder rentableCats = new StringBuilder();
+        for (Cat cat : cats) {
+            if (!cat.getRented()) {
+                rentableCats.append(cat.toString()).append("\n");
+            }
+        }
+        return rentableCats.length() > 0 ? rentableCats.toString() : "";
+    }
 
-		for (Cat cat : cats) {
-			if (!cat.getRented()) {
-				rentableCats.append(cat.toString());
-				rentableCats.append("\n");
-			}
-		}
-		if (rentableCats.length() == 0) {
-			return "";
-		}
+    private Cat getCat(int id) {
+        for (Cat cat : cats) {
+            if (cat.getId() == id) {
+                return cat;
+            }
+        }
+        System.out.println("Invalid cat ID.");
+        return null;
+    }
 
-		return rentableCats.toString();
-	}
-
-	/**
-	 * Given an id, return a reference to the specified cat if a cat with that ID
-	 * exists. Return null if no cat of that ID exists in the list.
-	 * 
-	 * @param int id ID of cat to search for
-	 * @return Cat searched for if exists, null otherwise
-	 */
-	private Cat getCat(int id) {
-		if (cats == null) {
-			return null;
-		}
-
-		// Loop through every cat in the list
-		for (Cat c : cats) {
-			if (c.getId() == id) {
-				return c;
-			}
-		}
-		System.out.println("Invalid cat ID.");
-		return null;
-	}
-
-	/**
-	 * Add a cat to the list of cats.
-	 * 
-	 * @param c the Cat to add
-	 */
-	public void addCat(Cat c) {
-		cats.add(c);
-	}
-
+    public void addCat(Cat c) {
+        cats.add(c);
+    }
 	/**
 	 * Main method
 	 * 
